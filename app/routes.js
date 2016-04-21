@@ -50,6 +50,13 @@ module.exports = function(app, passport) {
     	failureflash : true	// allow flash messages
     }));
 
+    // process the login form
+    app.post('/login', passport.authenticate('local-login', {
+    	successRedirect : '/profile', // redirect to the secure profile
+    	failureRedirect : '/login',  // redirect back to the signup page
+    	failureflash : true  // allow flash messages
+    }));
+
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
 
